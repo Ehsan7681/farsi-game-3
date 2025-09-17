@@ -124,7 +124,7 @@
             width: 36px;
             height: 36px;
         }
-        #build-word-game, #choice-game, #read-game, #picture-guess-game, #fill-blank-game {
+        #build-word-game, #choice-game, #picture-guess-game, #fill-blank-game {
             max-width: 100%;
             overflow-x: hidden;
         }
@@ -189,7 +189,6 @@
             flex-direction: column;
             width: 100%;
             max-width: 100%;
-            /* --- تغییر اصلی: محتوا در مرکز صفحه --- */
             min-height: 100vh;
             justify-content: center;
             align-items: center;
@@ -220,7 +219,6 @@
             text-align: center;
             box-shadow: 0 10px 25px rgba(0,0,0,0.2);
         }
-        
         /* --- تغییرات برای بخش روان‌خوانی --- */
         #read-game {
             display: flex;
@@ -236,7 +234,6 @@
             align-items: center;
             justify-content: center;
         }
-        
         /* --- استایل برای جمله توصیه --- */
         .lesson-advice {
             text-align: center;
@@ -261,7 +258,6 @@
             </div>
             <div class="creator-info">ایده و تولید: احسان شمسی</div>
         </div>
-
         <!-- --- صفحه منوی اصلی --- -->
         <div id="main-menu" class="page">
             <div class="bg-white rounded-2xl shadow-lg p-6 w-full max-w-md">
@@ -272,7 +268,6 @@
                 <div id="lessons-grid" class="space-y-4"></div>
             </div>
         </div>
-
         <!-- --- صفحه بخش‌های درس --- -->
         <div id="lesson-sections-screen" class="page">
             <div class="bg-white rounded-2xl shadow-lg p-6 w-full max-w-md">
@@ -282,7 +277,6 @@
                     </button>
                     <div class="flex-1 text-center">
                         <h2 id="sections-lesson-title" class="text-2xl font-bold text-sky-700 lesson-title-header"></h2>
-                        <!-- --- افزودن جمله توصیه --- -->
                         <p class="lesson-advice">توصیه می‌شود از بخش «روان‌خوانی» شروع کنید.</p>
                     </div>
                     <div class="w-12"></div>
@@ -291,7 +285,6 @@
             </div>
             <div class="creator-info">ایده و تولید: احسان شمسی</div>
         </div>
-
         <!-- --- صفحه بازی --- -->
         <div id="game-screen" class="page">
             <div class="bg-white rounded-2xl shadow-lg p-6 w-full max-w-md">
@@ -311,13 +304,7 @@
                     <p class="text-xl text-gray-600 mb-6">کدام کلمه درست است؟</p>
                     <div id="choice-options" class="grid grid-cols-1 gap-4"></div>
                 </div>
-                <div id="read-game" class="hidden">
-                    <p class="text-5xl font-bold text-gray-800 mb-6" id="read-word"></p>
-                    <button id="read-aloud-btn" class="bg-cyan-500 hover:bg-cyan-600 text-white p-4 rounded-full">
-                        <img src="speaker.png" class="w-8 h-8" alt="بلندگو">
-                    </button>
-                    <button id="reading-done-btn" class="mt-6 w-full bg-green-500 hover:bg-green-600 text-white font-bold py-3 px-6 rounded-full">خواندم</button>
-                </div>
+                <!-- --- #read-game از اینجا حذف شده است --- -->
                 <div id="picture-guess-game" class="hidden">
                     <p class="text-xl text-gray-600 mb-6">کدام کلمه مربوط به تصویر است؟</p>
                     <div id="picture-guess-options" class="grid grid-cols-1 gap-4"></div>
@@ -326,10 +313,11 @@
                     <p class="text-2xl font-bold text-gray-800 mb-6" id="sentence-blank"></p>
                     <div id="fill-blank-options" class="grid grid-cols-1 gap-4"></div>
                 </div>
+                <!-- --- محل جدید برای درج #read-game به صورت پویا --- -->
+                <div id="dynamic-read-game-container"></div>
             </div>
             <div class="creator-info">ایده و تولید: احسان شمسی</div>
         </div>
-
         <!-- --- مودال موفقیت --- -->
         <div id="success-modal" class="modal">
             <div class="bg-white rounded-2xl shadow-2xl p-8 text-center transform scale-95 transition-transform duration-300">
@@ -339,7 +327,6 @@
                 <button id="next-exercise-btn" class="w-full bg-blue-500 hover:bg-blue-600 text-white font-bold py-3 px-6 rounded-full">بعدی</button>
             </div>
         </div>
-
         <!-- --- مودال تکمیل درس --- -->
         <div id="lesson-complete-modal" class="modal">
             <div class="bg-white rounded-2xl shadow-2xl p-8 text-center">
@@ -349,7 +336,6 @@
                 <button id="back-to-sections-from-complete" class="w-full bg-green-500 hover:bg-green-600 text-white font-bold py-3 px-6 rounded-full">بازگشت به درس</button>
             </div>
         </div>
-
         <!-- --- مودال هشدار اشتراک‌گذاری --- -->
         <div id="share-warning-modal" class="modal">
             <div class="bg-white rounded-2xl shadow-2xl p-6 text-center max-w-sm w-full">
@@ -358,32 +344,25 @@
                 <button id="close-warning-btn" class="w-full bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-full">متوجه شدم</button>
             </div>
         </div>
-
         <!-- --- مودال درس قفل شده --- -->
         <div id="locked-lesson-modal" class="modal">
             <div class="modal-content">
                 <h3 class="text-2xl font-bold text-amber-500 mb-4">🔒 درس قفل است</h3>
                 <p class="text-gray-700 mb-4">این درس در نسخه دمو در دسترس نیست. لطفاً کد فعال‌سازی خود را وارد کنید تا به تمام دروس دسترسی پیدا کنید.</p>
-                
                 <input type="text" id="modal-activation-code" placeholder="کد فعال‌سازی" class="w-full p-3 border border-gray-300 rounded-lg mb-4 text-center font-mono">
-                
                 <button id="modal-activate-btn" class="w-full bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-full mb-3">
                     فعال‌سازی
                 </button>
-                
                 <button id="modal-demo-btn" class="w-full bg-gray-500 hover:bg-gray-600 text-white font-bold py-2 px-4 rounded-full mb-3">
                     بازگشت به نسخه دمو
                 </button>
-                
                 <button id="close-locked-modal-btn" class="w-full bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded-full">
                     لغو
                 </button>
-                
                 <p id="modal-activation-message" class="text-center mt-4 min-h-[1.5em]"></p>
             </div>
         </div>
     </div>
-
     <script>
         // --- DATA ---
         const activationCodes = [
@@ -408,7 +387,6 @@
             "W2X3-Y4Z5-A6B7", "C8D9-E0F1-G2H3", "I4J5-K6L7-M8N9", "O0P1-Q2R3-S4T5", "U6V7-W8X9-Y0Z1",
             "A2B3-C4D5-E6F7", "G8H9-I0J1-K2L3", "M4N5-O6P7-Q8R9", "S0T1-U2V3-W4X5", "Y6Z7-A8B9-C0D1"
         ];
-
         const lessons = [
              {
                 id: 1, title: "درس اول: آ ا ، بـ ب", unlocked: true,
@@ -696,7 +674,6 @@
                 ]
             }
         ];
-
         // --- STATE ---
         let currentLesson = null;
         let currentExercises = [];
@@ -711,7 +688,6 @@
         const successSounds = ["bravo1.mp3", "bravo2.mp3", "bravo3.mp3", "bravo4.mp3"];
         let isActivated = false;
         let isDemoMode = false;
-
         // --- DOM Elements ---
         const pages = {
             activation: document.getElementById('activation-screen'),
@@ -719,14 +695,12 @@
             lessonSections: document.getElementById('lesson-sections-screen'),
             game: document.getElementById('game-screen')
         };
-
         const modals = {
             success: document.getElementById('success-modal'),
             lessonComplete: document.getElementById('lesson-complete-modal'),
             shareWarning: document.getElementById('share-warning-modal'),
             lockedLesson: document.getElementById('locked-lesson-modal')
         };
-
         const elements = {
             // Activation
             activationCodeInput: document.getElementById('activation-code-input'),
@@ -748,10 +722,7 @@
             letterBubblesContainer: document.getElementById('letter-bubbles'),
             choiceGameEl: document.getElementById('choice-game'),
             choiceOptionsContainer: document.getElementById('choice-options'),
-            readGameEl: document.getElementById('read-game'),
-            readWordEl: document.getElementById('read-word'),
-            readAloudBtn: document.getElementById('read-aloud-btn'),
-            readingDoneBtn: document.getElementById('reading-done-btn'),
+            // --- #read-game از اینجا حذف شد --- 
             pictureGuessGameEl: document.getElementById('picture-guess-game'),
             pictureGuessOptionsContainer: document.getElementById('picture-guess-options'),
             fillBlankGameEl: document.getElementById('fill-blank-game'),
@@ -766,9 +737,10 @@
             modalActivateBtn: document.getElementById('modal-activate-btn'),
             modalDemoBtn: document.getElementById('modal-demo-btn'),
             closeLockedModalBtn: document.getElementById('close-locked-modal-btn'),
-            modalActivationMessage: document.getElementById('modal-activation-message')
+            modalActivationMessage: document.getElementById('modal-activation-message'),
+            // --- المان جدید برای کانتینر پویا --- 
+            dynamicReadGameContainer: document.getElementById('dynamic-read-game-container')
         };
-
         // --- Images/Icons Data ---
         const exerciseImages = {
             "آب": `<img src="water.png" class="w-28 h-28 object-contain" alt="آب">`,
@@ -861,7 +833,6 @@
             "ژله": `<img src="jelly.png" class="w-28 h-28 object-contain" alt="ژله">`,
             "default": `<div class="w-28 h-28 bg-gray-200 rounded-lg flex items-center justify-center text-gray-400">?</div>`
         };
-
         const sectionIcons = {
             "ترکیب صداها": `<img src="build_word.png" class="w-10 h-10" alt="ترکیب صداها">`,
             "کلمه‌یابی": `<img src="find_word.png" class="w-10 h-10" alt="کلمه‌یابی">`,
@@ -869,26 +840,21 @@
             "حدس تصویر": `<img src="guess_image.png" class="w-10 h-10" alt="حدس تصویر">`,
             "کلمه گمشده": `<img src="missing_word.png" class="w-10 h-10" alt="کلمه گمشده">`
         };
-
         // --- Navigation & Render ---
         function showPage(pageName) {
             Object.values(pages).forEach(page => page.classList.remove('active'));
             pages[pageName].classList.add('active');
         }
-
         function showModal(modalName) {
             modals[modalName].classList.add('active');
         }
-
         function hideModal(modalName) {
             modals[modalName].classList.remove('active');
         }
-
         function showMainMenu() {
             renderMainMenu();
             showPage('mainMenu');
         }
-
         function renderMainMenu() {
             elements.lessonsGrid.innerHTML = '';
             lessons.forEach(lesson => {
@@ -898,31 +864,25 @@
                 const lockIcon = `<img src="lock.png" class="w-8 h-8" alt="قفل">`;
                 const playIcon = `<img src="play.png" class="w-8 h-8" alt="پخش">`;
                 card.innerHTML = `<span>${lesson.title}</span> <span>${isLocked ? lockIcon : playIcon}</span>`;
-                
                 if (!isLocked) {
                     card.onclick = () => showLessonSections(lesson.id);
                 } else {
                     card.onclick = () => showModal('lockedLesson');
                 }
-                
                 elements.lessonsGrid.appendChild(card);
             });
         }
-
         function showLessonSections(lessonId) {
             if (isDemoMode && lessonId > 5) {
                 showModal('lockedLesson');
                 return;
             }
-            
             currentLesson = lessons.find(l => l.id === lessonId);
             elements.sectionsLessonTitle.textContent = currentLesson.title;
             elements.sectionsGrid.innerHTML = '';
-            
             currentLesson.sections.forEach((section, index) => {
                 const sectionContainer = document.createElement('div');
                 sectionContainer.className = 'section-card-container';
-                
                 const card = document.createElement('div');
                 card.className = 'card bg-white p-5 rounded-2xl shadow-md cursor-pointer flex items-center gap-4';
                 card.innerHTML = `
@@ -930,21 +890,17 @@
                     <div class="flex-1"><h3 class="font-bold text-xl text-gray-700">${section.title}</h3></div>
                     <div><img src="arrow_back.png" class="w-8 h-8 text-indigo-300" alt="بازگشت"></div>`;
                 card.onclick = () => startSection(section.exercises, index);
-                
                 if (section.completed) {
                     const completedIndicator = document.createElement('div');
                     completedIndicator.className = 'completed-indicator';
                     completedIndicator.innerHTML = '✓';
                     sectionContainer.appendChild(completedIndicator);
                 }
-                
                 sectionContainer.appendChild(card);
                 elements.sectionsGrid.appendChild(sectionContainer);
             });
-            
             showPage('lessonSections');
         }
-
         // --- Game Logic ---
         function startSection(exercises, sectionIndex) {
             currentExercises = shuffle([...exercises]);
@@ -953,7 +909,6 @@
             loadExercise(currentExerciseIndex, sectionIndex);
             showPage('game');
         }
-
         function shuffle(array) {
             for (let i = array.length - 1; i > 0; i--) {
                 const j = Math.floor(Math.random() * (i + 1));
@@ -961,27 +916,38 @@
             }
             return array;
         }
-
         function loadExercise(index, sectionIndex) {
             const exercise = currentExercises[index];
             const wordKey = exercise.word || exercise.correct || exercise.image;
             elements.wordImageContainer.innerHTML = exerciseImages[wordKey] || exerciseImages["default"];
-            
-            [elements.buildWordGameEl, elements.choiceGameEl, elements.readGameEl, elements.pictureGuessGameEl, elements.fillBlankGameEl].forEach(el => el.classList.add('hidden'));
-            
-            if (exercise.type === 'build') loadBuildExercise(exercise);
-            else if (exercise.type === 'choice') loadChoiceExercise(exercise);
-            else if (exercise.type === 'read') loadReadExercise(exercise, sectionIndex);
-            else if (exercise.type === 'pictureGuess') loadPictureGuessExercise(exercise);
-            else if (exercise.type === 'fillBlank') loadFillBlankExercise(exercise);
+            // --- حذف کامل #read-game از DOM در هر بار بارگذاری ---
+            elements.dynamicReadGameContainer.innerHTML = '';
+            // --- مخفی کردن همه بخش‌های دیگر ---
+            elements.buildWordGameEl.classList.add('hidden');
+            elements.choiceGameEl.classList.add('hidden');
+            elements.pictureGuessGameEl.classList.add('hidden');
+            elements.fillBlankGameEl.classList.add('hidden');
+            if (exercise.type === 'build') {
+                elements.buildWordGameEl.classList.remove('hidden');
+                loadBuildExercise(exercise);
+            } else if (exercise.type === 'choice') {
+                elements.choiceGameEl.classList.remove('hidden');
+                loadChoiceExercise(exercise);
+            } else if (exercise.type === 'read') {
+                // --- ساخت و افزودن #read-game به صورت پویا فقط برای نوع 'read' ---
+                createAndLoadReadExercise(exercise, sectionIndex);
+            } else if (exercise.type === 'pictureGuess') {
+                elements.pictureGuessGameEl.classList.remove('hidden');
+                loadPictureGuessExercise(exercise);
+            } else if (exercise.type === 'fillBlank') {
+                elements.fillBlankGameEl.classList.remove('hidden');
+                loadFillBlankExercise(exercise);
+            }
         }
-
         function loadBuildExercise(exercise) {
-            elements.buildWordGameEl.classList.remove('hidden');
-            const wordLetters = exercise.word.split('');
             elements.dropZonesContainer.innerHTML = '';
             elements.letterBubblesContainer.innerHTML = '';
-            
+            const wordLetters = exercise.word.split('');
             wordLetters.forEach((letter, index) => {
                 const dropZone = document.createElement('div');
                 dropZone.className = 'drop-zone flex items-center justify-center w-16 h-16 bg-gray-200 rounded-lg border-2 border-gray-400 text-transparent';
@@ -990,7 +956,6 @@
                 dropZone.textContent = letter;
                 elements.dropZonesContainer.appendChild(dropZone);
             });
-            
             shuffle([...wordLetters]).forEach(letter => {
                 const bubble = document.createElement('div');
                 bubble.className = 'letter-bubble w-16 h-16 bg-yellow-300 flex items-center justify-center text-3xl font-bold shadow-md';
@@ -999,12 +964,9 @@
                 bubble.dataset.letter = letter;
                 elements.letterBubblesContainer.appendChild(bubble);
             });
-            
             addDragDropListeners();
         }
-
         function loadChoiceExercise(exercise) {
-            elements.choiceGameEl.classList.remove('hidden');
             elements.choiceOptionsContainer.innerHTML = '';
             shuffle([...exercise.options]).forEach(option => {
                 const button = document.createElement('button');
@@ -1014,9 +976,7 @@
                 elements.choiceOptionsContainer.appendChild(button);
             });
         }
-
         function loadPictureGuessExercise(exercise) {
-            elements.pictureGuessGameEl.classList.remove('hidden');
             elements.pictureGuessOptionsContainer.innerHTML = '';
             shuffle([...exercise.options]).forEach(option => {
                 const button = document.createElement('button');
@@ -1026,9 +986,7 @@
                 elements.pictureGuessOptionsContainer.appendChild(button);
             });
         }
-
         function loadFillBlankExercise(exercise) {
-            elements.fillBlankGameEl.classList.remove('hidden');
             elements.fillBlankOptionsContainer.innerHTML = '';
             elements.sentenceBlankEl.textContent = exercise.sentence;
             shuffle([...exercise.options]).forEach(option => {
@@ -1039,15 +997,12 @@
                 elements.fillBlankOptionsContainer.appendChild(button);
             });
         }
-
         // --- Audio Playback Logic ---
         function playSound(filename) {
             if (!audioContext) {
                 audioContext = new (window.AudioContext || window.webkitAudioContext)();
             }
-            
             const audio = new Audio(`sounds/${filename}`);
-            
             if (audioContext.state === 'suspended') {
                 audioContext.resume().then(() => {
                     audio.play().catch(e => console.log("خطا در پخش صوت:", e));
@@ -1056,38 +1011,48 @@
                 audio.play().catch(e => console.log("خطا در پخش صوت:", e));
             }
         }
-
         function playRandomSuccessSound() {
             if (usedSuccessSounds.length === successSounds.length) {
                 usedSuccessSounds = [];
             }
-            
             const availableSounds = successSounds.filter(sound => !usedSuccessSounds.includes(sound));
             const randomIndex = Math.floor(Math.random() * availableSounds.length);
             const selectedSound = availableSounds[randomIndex];
             usedSuccessSounds.push(selectedSound);
             playSound(selectedSound);
         }
-
-        // --- Read Exercise Logic ---
-        function loadReadExercise(exercise, sectionIndex) {
-            elements.readGameEl.classList.remove('hidden');
-            elements.readWordEl.textContent = exercise.word;
-            
-            elements.readAloudBtn.onclick = () => {
-                playSound(`${exercise.word}.mp3`);
-            };
-            
-            elements.readingDoneBtn.onclick = () => {
-                playRandomSuccessSound();
-                setTimeout(() => showSuccessModal(sectionIndex), 1000);
-            };
+        // --- Read Exercise Logic (نسخه جدید با ساخت پویا) ---
+        function createAndLoadReadExercise(exercise, sectionIndex) {
+            // --- ساخت HTML کامل بخش روان‌خوانی ---
+            const readGameHTML = `
+                <div id="read-game" class="flex flex-col items-center gap-4">
+                    <p class="text-5xl font-bold text-gray-800" id="read-word">${exercise.word}</p>
+                    <button id="read-aloud-btn" class="bg-cyan-500 hover:bg-cyan-600 text-white p-4 rounded-full">
+                        <img src="speaker.png" class="w-8 h-8" alt="بلندگو">
+                    </button>
+                    <button id="reading-done-btn" class="mt-6 w-full bg-green-500 hover:bg-green-600 text-white font-bold py-3 px-6 rounded-full">خواندم</button>
+                </div>
+            `;
+            // --- افزودن به کانتینر پویا ---
+            elements.dynamicReadGameContainer.innerHTML = readGameHTML;
+            // --- اتصال Event Listeners به المان‌های جدید ---
+            const readAloudBtn = document.getElementById('read-aloud-btn');
+            const readingDoneBtn = document.getElementById('reading-done-btn');
+            if (readAloudBtn) {
+                readAloudBtn.onclick = () => {
+                    playSound(`${exercise.word}.mp3`);
+                };
+            }
+            if (readingDoneBtn) {
+                readingDoneBtn.onclick = () => {
+                    playRandomSuccessSound();
+                    setTimeout(() => showSuccessModal(sectionIndex), 1000);
+                };
+            }
         }
-
         function handleChoiceSelection(event, selectedOption, correctOption) {
             const button = event.target;
             elements.choiceOptionsContainer.querySelectorAll('button').forEach(btn => btn.disabled = true);
-            
             if (selectedOption === correctOption) {
                 button.classList.add('correct', 'bg-green-500');
                 playRandomSuccessSound();
@@ -1100,11 +1065,9 @@
                 setTimeout(() => loadExercise(currentExerciseIndex), 1500);
             }
         }
-
         function handlePictureGuessSelection(event, selectedOption, correctOption) {
             const button = event.target;
             elements.pictureGuessOptionsContainer.querySelectorAll('button').forEach(btn => btn.disabled = true);
-            
             if (selectedOption === correctOption) {
                 button.classList.add('correct', 'bg-green-500');
                 playRandomSuccessSound();
@@ -1117,11 +1080,9 @@
                 setTimeout(() => loadExercise(currentExerciseIndex), 1500);
             }
         }
-
         function handleFillBlankSelection(event, selectedOption, correctOption) {
             const button = event.target;
             elements.fillBlankOptionsContainer.querySelectorAll('button').forEach(btn => btn.disabled = true);
-            
             if (selectedOption === correctOption) {
                 button.classList.add('correct', 'bg-green-500');
                 playRandomSuccessSound();
@@ -1134,30 +1095,25 @@
                 setTimeout(() => loadExercise(currentExerciseIndex), 1500);
             }
         }
-
         // --- Drag & Drop Logic ---
         function addDragDropListeners() {
             const bubbles = document.querySelectorAll('.letter-bubble');
             const dropZones = document.querySelectorAll('.drop-zone:not(.filled)');
-            
             bubbles.forEach(bubble => {
                 bubble.addEventListener('mousedown', startDrag);
                 bubble.addEventListener('touchstart', handleTouchStart, { passive: false });
             });
-            
             dropZones.forEach(zone => {
                 zone.addEventListener('dragover', e => e.preventDefault());
                 zone.addEventListener('drop', handleDrop);
                 zone.addEventListener('touchend', handleTouchDrop);
             });
-            
             document.addEventListener('contextmenu', (e) => {
                 if (isDragging) {
                     e.preventDefault();
                 }
             });
         }
-
         function startDrag(e) {
             if (e.button !== 0) return;
             e.preventDefault();
@@ -1165,13 +1121,11 @@
             document.addEventListener('mousemove', drag);
             document.addEventListener('mouseup', stopDrag);
         }
-
         function drag(e) {
             if (!isDragging) return;
             e.preventDefault();
             moveDrag(e.clientX, e.clientY);
         }
-
         function stopDrag(e) {
             if (!isDragging) return;
             e.preventDefault();
@@ -1179,7 +1133,6 @@
             document.removeEventListener('mousemove', drag);
             document.removeEventListener('mouseup', stopDrag);
         }
-
         function handleTouchStart(e) {
             if (e.touches.length > 1) return;
             e.preventDefault();
@@ -1188,14 +1141,12 @@
             document.addEventListener('touchmove', handleTouchMove, { passive: false });
             document.addEventListener('touchend', handleTouchEnd);
         }
-
         function handleTouchMove(e) {
             if (!isDragging || e.touches.length > 1) return;
             e.preventDefault();
             const touch = e.touches[0];
             moveDrag(touch.clientX, touch.clientY);
         }
-
         function handleTouchEnd(e) {
             if (!isDragging) return;
             e.preventDefault();
@@ -1203,55 +1154,44 @@
             document.removeEventListener('touchmove', handleTouchMove);
             document.removeEventListener('touchend', handleTouchEnd);
         }
-
         function startDragProcess(element, clientX, clientY) {
             draggedElement = element;
             isDragging = true;
             draggedElement.classList.add('dragging');
-            
             dragClone = draggedElement.cloneNode(true);
             dragClone.classList.add('drag-clone');
             document.body.appendChild(dragClone);
-            
             const rect = draggedElement.getBoundingClientRect();
             dragOffsetX = clientX - rect.left;
             dragOffsetY = clientY - rect.top;
-            
             dragClone.style.width = `${rect.width}px`;
             dragClone.style.height = `${rect.height}px`;
             dragClone.style.left = `${rect.left}px`;
             dragClone.style.top = `${rect.top}px`;
-            
             document.body.style.userSelect = 'none';
             document.body.style.webkitUserSelect = 'none';
         }
-
         function moveDrag(clientX, clientY) {
             if (!isDragging || !dragClone) return;
             dragClone.style.left = `${clientX - dragOffsetX}px`;
             dragClone.style.top = `${clientY - dragOffsetY}px`;
         }
-
         function endDrag(clientX, clientY) {
             if (!isDragging) return;
             isDragging = false;
-            
             let dropTarget = null;
             const dropZones = document.querySelectorAll('.drop-zone:not(.filled)');
-            
             for (const zone of dropZones) {
                 const rect = zone.getBoundingClientRect();
                 const zoneCenterX = rect.left + rect.width / 2;
                 const zoneCenterY = rect.top + rect.height / 2;
                 const distance = Math.sqrt(Math.pow(clientX - zoneCenterX, 2) + Math.pow(clientY - zoneCenterY, 2));
                 const zoneRadius = Math.sqrt(Math.pow(rect.width, 2) + Math.pow(rect.height, 2)) / 2;
-                
                 if (distance < zoneRadius * 1.5) {
                     dropTarget = zone;
                     break;
                 }
             }
-            
             if (dropTarget) {
                 dropLetter(dropTarget, draggedElement);
             } else {
@@ -1260,7 +1200,6 @@
                     setTimeout(() => draggedElement.classList.remove('shake'), 500);
                 }
             }
-            
             if (dragClone) {
                 document.body.removeChild(dragClone);
                 dragClone = null;
@@ -1272,7 +1211,6 @@
             document.body.style.userSelect = '';
             document.body.style.webkitUserSelect = '';
         }
-
         function handleDrop(e) {
             e.preventDefault();
             const dropZone = e.target.closest('.drop-zone');
@@ -1280,7 +1218,6 @@
                 dropLetter(dropZone, draggedElement);
             }
         }
-
         function handleTouchDrop(e) {
             const dropZone = e.target.closest('.drop-zone');
             if (dropZone && draggedElement) {
@@ -1291,24 +1228,20 @@
                 }
             }
         }
-
         function dropLetter(dropZone, letterElement) {
             if (dropZone.classList.contains('filled')) {
                 letterElement.classList.add('shake');
                 setTimeout(() => letterElement.classList.remove('shake'), 500);
                 return;
             }
-            
             const allZones = Array.from(elements.dropZonesContainer.children);
             const nextEmptyZoneIndex = allZones.findIndex(z => !z.classList.contains('filled'));
             const dropIndex = allZones.indexOf(dropZone);
-            
             if (dropIndex !== nextEmptyZoneIndex) {
                 letterElement.classList.add('shake');
                 setTimeout(() => letterElement.classList.remove('shake'), 500);
                 return;
             }
-            
             if (letterElement.dataset.letter === dropZone.dataset.letter) {
                 dropZone.textContent = letterElement.textContent;
                 dropZone.classList.add('filled');
@@ -1320,7 +1253,6 @@
                 setTimeout(() => letterElement.classList.remove('shake'), 500);
             }
         }
-
         function checkWordCompletion() {
             const isComplete = Array.from(elements.dropZonesContainer.children).every(z => z.classList.contains('filled'));
             if (isComplete) {
@@ -1328,12 +1260,10 @@
                 setTimeout(showSuccessModal, 1000);
             }
         }
-
         function showSuccessModal(sectionIndex) {
             const exercise = currentExercises[currentExerciseIndex];
             const word = exercise.word || exercise.correct;
             elements.modalWordEl.textContent = `«${word}» عالی بود!`;
-            
             if (currentExerciseIndex >= currentExercises.length - 1) {
                 if (sectionIndex !== undefined) {
                     currentLesson.sections[sectionIndex].completed = true;
@@ -1347,12 +1277,10 @@
                 showModal('success');
             }
         }
-
         // --- Activation Logic ---
         function checkActivationStatus() {
             const savedCode = localStorage.getItem('alphabetApp_code');
             const isDemo = localStorage.getItem('alphabetApp_demo') === 'true';
-            
             if (savedCode && activationCodes.includes(savedCode)) {
                 isActivated = true;
                 isDemoMode = false;
@@ -1365,22 +1293,17 @@
                 showPage('activation');
             }
         }
-
         function activateApp(code, isFromModal = false) {
             code = code.trim().toUpperCase();
-            
             if (activationCodes.includes(code)) {
                 localStorage.setItem('alphabetApp_code', code);
                 localStorage.setItem('alphabetApp_activationTime', new Date().getTime().toString());
                 localStorage.removeItem('alphabetApp_demo');
-                
                 isActivated = true;
                 isDemoMode = false;
-                
                 if (isFromModal) {
                     elements.modalActivationMessage.textContent = "فعال‌سازی با موفقیت انجام شد!";
                     elements.modalActivationMessage.className = "text-center mt-4 min-h-[1.5em] text-green-500";
-                    
                     setTimeout(() => {
                         hideModal('lockedLesson');
                         showMainMenu();
@@ -1400,7 +1323,6 @@
                 }
             }
         }
-
         function startDemo() {
             localStorage.setItem('alphabetApp_demo', 'true');
             localStorage.removeItem('alphabetApp_code');
@@ -1408,7 +1330,6 @@
             isDemoMode = true;
             showMainMenu();
         }
-
         // --- Event Listeners ---
         elements.backToMainMenuBtn.addEventListener('click', () => showPage('mainMenu'));
         elements.backToSectionsBtn.addEventListener('click', () => showLessonSections(currentLesson.id));
@@ -1421,7 +1342,6 @@
             hideModal('success');
             loadExercise(currentExerciseIndex);
         });
-
         // Activation
         elements.activateBtn.addEventListener('click', () => {
             const code = elements.activationCodeInput.value.trim();
@@ -1432,14 +1352,11 @@
                 elements.activationMessage.className = "text-center text-red-500 mt-4";
             }
         });
-
         elements.demoBtn.addEventListener('click', startDemo);
-
         elements.closeWarningBtn.addEventListener('click', () => {
             hideModal('shareWarning');
             showMainMenu();
         });
-
         // Locked Lesson Modal
         elements.modalActivateBtn.addEventListener('click', () => {
             const code = elements.modalActivationCode.value.trim();
@@ -1450,21 +1367,17 @@
                 elements.modalActivationMessage.className = "text-center mt-4 min-h-[1.5em] text-red-500";
             }
         });
-
         elements.modalDemoBtn.addEventListener('click', () => {
             hideModal('lockedLesson');
             startDemo();
         });
-
         elements.closeLockedModalBtn.addEventListener('click', () => {
             hideModal('lockedLesson');
         });
-
         // --- Initialization ---
         document.addEventListener('DOMContentLoaded', () => {
             checkActivationStatus();
         });
-
         // Simple progress saving
         function saveProgress() {
             try {
@@ -1473,7 +1386,6 @@
                 console.log('Error saving progress:', e);
             }
         }
-
         function loadProgress() {
             try {
                 const savedProgress = localStorage.getItem('alphabetApp_progress');
@@ -1491,7 +1403,6 @@
                 console.log('Error loading progress:', e);
             }
         }
-
         loadProgress();
     </script>
 </body>
