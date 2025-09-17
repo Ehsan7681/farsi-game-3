@@ -114,13 +114,15 @@
             align-items: center;
             justify-content: center;
             transition: transform 0.2s;
+            width: 48px;
+            height: 48px;
         }
         .back-button-icon:hover {
             transform: scale(1.1);
         }
         .back-button-icon img {
-            width: 24px;
-            height: 24px;
+            width: 36px;
+            height: 36px;
         }
         #build-word-game, #choice-game, #read-game, #picture-guess-game, #fill-blank-game {
             max-width: 100%;
@@ -182,24 +184,20 @@
             margin-top: 1rem;
             padding: 0.5rem;
         }
-        /* --- استایل‌های جدید برای مدیریت صفحات --- */
         .page {
             display: none;
             flex-direction: column;
             width: 100%;
             max-width: 100%;
+            /* --- تغییر اصلی: محتوا در مرکز صفحه --- */
+            min-height: 100vh;
+            justify-content: center;
+            align-items: center;
+            padding: 1rem;
         }
         .page.active {
             display: flex;
         }
-        /* --- استایل برای صفحه فعال‌سازی --- */
-        #activation-screen {
-            min-height: 100vh;
-            align-items: center;
-            justify-content: center;
-            padding: 1rem;
-        }
-        /* --- استایل برای مودال‌ها --- */
         .modal {
             position: fixed;
             inset: 0;
@@ -222,13 +220,38 @@
             text-align: center;
             box-shadow: 0 10px 25px rgba(0,0,0,0.2);
         }
+        
+        /* --- تغییرات برای بخش روان‌خوانی --- */
+        #read-game {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1rem;
+        }
+        #read-word {
+            text-align: center;
+        }
+        #read-aloud-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        /* --- استایل برای جمله توصیه --- */
+        .lesson-advice {
+            text-align: center;
+            font-size: 0.875rem; /* text-sm */
+            color: #94a3b8; /* slate-400 */
+            margin-top: 0.5rem;
+            font-weight: 300;
+        }
     </style>
 </head>
 <body class="text-gray-800">
-    <div id="app-container" class="w-full max-w-md mx-auto p-4">
+    <div id="app-container" class="w-full max-w-md mx-auto">
         <!-- --- صفحه فعال‌سازی --- -->
         <div id="activation-screen" class="page active">
-            <div class="bg-white rounded-2xl shadow-lg p-6 mt-8 w-full max-w-md">
+            <div class="bg-white rounded-2xl shadow-lg p-6 w-full max-w-md">
                 <h2 class="text-2xl font-bold text-center text-sky-700 mb-6">فعال‌سازی برنامه</h2>
                 <p class="text-center text-gray-600 mb-4">لطفاً کد فعال‌سازی خود را وارد کنید</p>
                 <input type="text" id="activation-code-input" class="w-full p-3 border border-gray-300 rounded-lg mb-4 text-center font-mono" placeholder="XXXX-XXXX-XXXX">
@@ -241,36 +264,44 @@
 
         <!-- --- صفحه منوی اصلی --- -->
         <div id="main-menu" class="page">
-            <header class="text-center mb-8">
-                <h1 class="text-5xl font-bold text-sky-700">مدرسه الفبا</h1>
-                <p class="text-sky-600 text-lg mt-2 flex justify-center"><img src="sun.png" class="w-10 h-10" alt="آفتاب"></p>
-            </header>
-            <div id="lessons-grid" class="space-y-4"></div>
+            <div class="bg-white rounded-2xl shadow-lg p-6 w-full max-w-md">
+                <header class="text-center mb-8">
+                    <h1 class="text-5xl font-bold text-sky-700">مدرسه الفبا</h1>
+                    <p class="text-sky-600 text-lg mt-2"><img src="sun.png" class="w-10 h-10 mx-auto" alt="آفتاب"></p>
+                </header>
+                <div id="lessons-grid" class="space-y-4"></div>
+            </div>
         </div>
 
         <!-- --- صفحه بخش‌های درس --- -->
         <div id="lesson-sections-screen" class="page">
-            <header class="flex items-center justify-between mb-6">
-                <button id="back-to-main-menu" class="back-button-icon">
-                    <img src="back_arrow.png" alt="بازگشت">
-                </button>
-                <h2 id="sections-lesson-title" class="text-2xl font-bold text-sky-700 lesson-title-header"></h2>
-                <div class="w-12"></div>
-            </header>
-            <div id="sections-grid" class="space-y-4"></div>
+            <div class="bg-white rounded-2xl shadow-lg p-6 w-full max-w-md">
+                <header class="flex items-center justify-between mb-6">
+                    <button id="back-to-main-menu" class="back-button-icon">
+                        <img src="back_arrow.png" alt="بازگشت">
+                    </button>
+                    <div class="flex-1 text-center">
+                        <h2 id="sections-lesson-title" class="text-2xl font-bold text-sky-700 lesson-title-header"></h2>
+                        <!-- --- افزودن جمله توصیه --- -->
+                        <p class="lesson-advice">توصیه می‌شود از بخش «روان‌خوانی» شروع کنید.</p>
+                    </div>
+                    <div class="w-12"></div>
+                </header>
+                <div id="sections-grid" class="space-y-4"></div>
+            </div>
             <div class="creator-info">ایده و تولید: احسان شمسی</div>
         </div>
 
         <!-- --- صفحه بازی --- -->
         <div id="game-screen" class="page">
-            <header class="flex items-center justify-between mb-6">
-                <button id="back-to-sections" class="back-button-icon">
-                    <img src="back_arrow.png" alt="بازگشت">
-                </button>
-                <h2 id="game-lesson-title" class="text-xl font-bold text-sky-700 lesson-title-header"></h2>
-                <div class="w-12"></div>
-            </header>
-            <div class="bg-white rounded-2xl shadow-lg p-6">
+            <div class="bg-white rounded-2xl shadow-lg p-6 w-full max-w-md">
+                <header class="flex items-center justify-between mb-6">
+                    <button id="back-to-sections" class="back-button-icon">
+                        <img src="back_arrow.png" alt="بازگشت">
+                    </button>
+                    <h2 id="game-lesson-title" class="text-xl font-bold text-sky-700 lesson-title-header"></h2>
+                    <div class="w-12"></div>
+                </header>
                 <div id="word-image-container" class="mb-6 h-32 flex items-center justify-center"></div>
                 <div id="build-word-game">
                     <div id="drop-zones" class="flex flex-row-reverse flex-wrap justify-center items-center gap-2 mb-6" dir="ltr"></div>
@@ -282,7 +313,9 @@
                 </div>
                 <div id="read-game" class="hidden">
                     <p class="text-5xl font-bold text-gray-800 mb-6" id="read-word"></p>
-                    <button id="read-aloud-btn" class="bg-cyan-500 hover:bg-cyan-600 text-white p-4 rounded-full"><img src="speaker.png" class="w-8 h-8" alt="بلندگو"></button>
+                    <button id="read-aloud-btn" class="bg-cyan-500 hover:bg-cyan-600 text-white p-4 rounded-full">
+                        <img src="speaker.png" class="w-8 h-8" alt="بلندگو">
+                    </button>
                     <button id="reading-done-btn" class="mt-6 w-full bg-green-500 hover:bg-green-600 text-white font-bold py-3 px-6 rounded-full">خواندم</button>
                 </div>
                 <div id="picture-guess-game" class="hidden">
@@ -839,9 +872,7 @@
 
         // --- Navigation & Render ---
         function showPage(pageName) {
-            // Hide all pages
             Object.values(pages).forEach(page => page.classList.remove('active'));
-            // Show requested page
             pages[pageName].classList.add('active');
         }
 
